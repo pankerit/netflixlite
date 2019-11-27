@@ -1,0 +1,16 @@
+.wrapper 
+  position: relative
+  margin: 0 auto
+  max-width: 100%
+  padding: 0 3rem
+  box-sizing: initial
+
+  @include above($lg)
+    max-width: $lg_width
+
+.grid
+  display: grid
+  width: 100%
+  @include above($lg)
+    grid-gap: 2rem 2.5rem
+    grid-template-columns: repeat(14, 1fr)

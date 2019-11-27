@@ -1,0 +1,103 @@
+#home 
+
+  .header 
+    position: relative
+    display: flex
+    align-items: flex-end
+    justify-content: space-between
+    padding: 0 5rem
+    padding-bottom: 8rem
+    height: 65rem
+    background-position: center top
+    background-repeat: no-repeat
+    background-size: cover
+    transition: all .4s
+    &::after, &::before 
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+    &::after 
+      background: linear-gradient(90deg, rgba(19, 23, 34, .8) 0%, transparent 50%)
+    &::before
+      background: linear-gradient(0deg, rgb(19, 23, 34) 0%, transparent 20%)
+    & > div
+      z-index: 1
+    & >:first-child 
+      width: 45%
+    & >:last-child
+      width: 55%
+
+    .left 
+      h1
+        margin-top: 3rem
+        margin-bottom: 5rem
+      
+      .buttons 
+        display: flex
+        & > * 
+          width: 18rem
+          height: 6rem
+          border-radius: 1rem
+        a 
+          @extend %center-center
+          background-color: var(--active)
+          margin-right: 2rem
+        button
+          background-color: transparent
+          border: solid 2px var(--white)
+    
+    .right
+      display: flex
+      justify-content: flex-end
+      div:last-child
+        margin-right: 0
+      div 
+        cursor: pointer
+        margin-right: 1.5rem
+        background-position: center center
+        background-repeat: no-repeat
+        background-size: cover
+        width: 11rem
+        height: 16rem
+        border-top-left-radius: .5rem
+        border-top-right-radius: .5rem
+        overflow: hidden
+        position: relative
+        &::before
+          content: ''
+          position: absolute
+          top: 0
+          left: 0
+          right: 0
+          bottom: 0
+          background-color: var(--main-bg)
+
+  .popular-movies
+    margin-top: .5rem
+    .navigation
+      grid-column: 5 / 15
+
+      button
+        position: relative
+        font-weight: 600
+        transition: .2s all
+        &:not(:last-child)
+          margin-right: 3.5rem
+          &::after
+            content: '/'
+            position: absolute
+            right: -1.9rem
+            transform: scale(1.2) translateY(1px)
+            cursor: initial
+        .active
+          color: var(--active)
+    .info
+      align-self: center
+      grid-column: 1 / 5
+    .card
+      grid-column: span 2
+      // background-color: #fff
+      height: 300px

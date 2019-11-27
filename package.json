@@ -1,0 +1,17 @@
+{
+  "name": "netflixlite",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "server": "npm run start --prefix server",
+    "client": "npm run start --prefix client",
+    "start": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.0.0"
+  },
+  "dependencies": {}
+}

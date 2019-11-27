@@ -1,0 +1,15 @@
+@import "reset";
+@import "vars";
+@import "typography";
+@import "utils/index";
+@import "grid/index";
+@import "components/index";
+@import "pages/index";
+
+body {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--main-bg);
+}
