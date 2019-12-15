@@ -1,8 +1,43 @@
 .movieCard 
-  img
+  height: auto
+  .img
+    position: relative
     display: block
     width: 100%
     height: 26.3rem
+    img 
+      width: 100%
+      height: 100%
+    .layer 
+      @extend %position-full
+      background-color: rgba(0,0,0,.3)
+      opacity: 0
+      transition: all .2s
+      .play 
+        @extend %position-center
+        &:hover
+          svg
+            opacity: .8
+        svg 
+          width: 7rem
+          height: 7rem
+          fill: var(--white)
+          opacity: .5
+          transition: all .1s
+      &:hover 
+        opacity: 1   
   .info
+    height: 6.5rem
     p
+      display: block
       margin-top: .5rem
+    
+    .view
+      color: var(--grey)
+      p
+        font-size: 1rem
+        font-weight: 600
+        margin: 2px .5rem 0 0
+      svg 
+        width: 1.5rem
+      

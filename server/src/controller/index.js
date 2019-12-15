@@ -26,3 +26,13 @@ exports.getHome = async (req, res) => {
 
   res.json(payload)
 }
+
+exports.search = async (req, res) => {
+  const str = req.query.search
+  const data = await db.collection('movies').find(
+    { $text: { $search: str } },
+    { score: { $meta: "textScore" } }
+  ).project({ score: { $meta: "textScore" }, _id: 0, description: 0, director: 0, slogan: 0 })
+    .sort({ score: { $meta: "textScore" } }).limit(5).toArray()
+  res.json(data)
+}

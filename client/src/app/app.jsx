@@ -1,14 +1,17 @@
 import React from 'react'
-import '@/styles/main.scss'
+import { Router } from "@reach/router"
+import '~/styles/main.scss'
 
-import Navbar from '@C/navbar'
-import Home from '@/pages/home'
+import Navbar from '~C/navbar'
+import Home from '~/pages/home'
 
 const App = () => {
   return (
     <>
       <Navbar />
-      <Home />
+      <Router>
+        <Home path="/"/>
+      </Router>
     </>
   )
 }

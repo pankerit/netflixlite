@@ -42,7 +42,7 @@
           height: 6rem
           border-radius: 1rem
         a 
-          @extend %center-center
+          @extend %flex-center
           background-color: var(--active)
           margin-right: 2rem
         button
@@ -76,7 +76,7 @@
           background-color: var(--main-bg)
 
   .popular-movies
-    margin-top: .5rem
+    margin-top: 2rem
     .navigation
       grid-column: 5 / 15
 
@@ -92,12 +92,11 @@
             right: -1.9rem
             transform: scale(1.2) translateY(1px)
             cursor: initial
-        .active
+        &.active span
           color: var(--active)
-    .info
-      align-self: center
-      grid-column: 1 / 5
+    .movie-info
+      grid-column: span 4
+      .popular
+        margin-top: 10rem
     .card
       grid-column: span 2
-      // background-color: #fff
-      height: 300px

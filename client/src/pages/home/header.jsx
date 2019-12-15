@@ -1,50 +1,38 @@
 import React from 'react'
 import styled from 'styled-components'
-import {useInterval} from 'react-use';
-import shallow from 'zustand/shallow'
-import {useStore} from './useData'
+import {getImg} from '~/module'
+import {useActive} from './useHome'
 
-const Header = () => {
-  const {active, data, isWaiting} = useStore(state => state.header, shallow)
-  const setHeaderActive = useStore(state => state.setHeaderActive)
-
-  useInterval(() => {
-    setHeaderActive(active > data.length-2 ? 0 : active + 1 )
-  }, isWaiting ? null : 5000)
-  if(!data) return null
-
+const Header = ({data}) => {
+  const [active, setActive] = useActive(data.length)
   const style = {
     backgroundImage: `url('${data[active].poster}')` 
   }
   return (
     <div className="header" style={style}>
-      <Left />
-      <Right />
+      <Left data={data[active]}/>
+      <Right data={data} active={active} setActive={setActive}/>
     </div>
   )
 }
 
-const Left = () => {
-  const {data, active} = useStore(state => state.header)
-  const info = data[active]
+const Left = ({data}) => {
   return (
     <div className="left">
-      <span className="text sm grey zd-block">{info.genre.slice(3).join(', ')} | {info.year} | {info.country.slice(0, 2).join(', ')} | {info.time.split('.')[0]}</span>
-      <h1 className="text xl white d-block">{info.title_ru}</h1>
+      <span className="text sm grey zd-block">{data.genre.slice(0,2).join(', ')} | {data.year} | {data.country.slice(0, 2).join(', ')} | {data.time.split('.')[0]}</span>
+      <h1 className="text xl white d-block">{data.title_ru}</h1>
       <div className="buttons">
-        <a href="#" className="text sm white medium">СМОТРЕТЬ</a>
+        <a href="#asd" className="text sm white medium">СМОТРЕТЬ</a>
         <button className="text sm white medium">ТРЕЙЛЕР</button>
       </div>
     </div>
   )
 }
 
-const Right = () => {
-  const {data, active} = useStore(state => state.header)
-  const setActive = useStore(state => state.setHeaderActive)
+const Right = ({data, active, setActive}) => {
   
-  const boxex = data.map(({img, kinopoisk_id}, id) => <Box onClick={() => setActive(id, true)} 
-    key={id} img={kinopoisk_id} active={id === active && true}/>)
+  const boxex = data.map(({kinopoisk_id}, id) => <Box onClick={() => setActive([id, true])} 
+    key={id} kp_id={kinopoisk_id} active={id === active && true}/>)
   
   return (
     <div className="right">
@@ -54,7 +42,7 @@ const Right = () => {
 }
 
 const Box = styled.div`
-  background-image: url('${props => `https://st.kp.yandex.net/images/film_big/${props.img}.jpg`}');
+  background-image: url('${props => getImg(props.kp_id, 'md')}');
   transition: all .2s;
   ${({active}) => `
     border-bottom: 3px solid ${active ? 'var(--active)' : 'rgba(19,23,34, .5)'};

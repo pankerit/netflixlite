@@ -1,5 +1,5 @@
-import getImgUrl from './getImgUrl'
+import getImg from './getImg'
 
 export {
-  getImgUrl
+  getImg
 }

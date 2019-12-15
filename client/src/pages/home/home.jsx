@@ -1,17 +1,18 @@
 import React from 'react'
-import {Init} from './useData'
+import {useFetch} from './useHome'
 import Header from './header'
 import PopularMovies from './popular-movies'
 
 const Home = () => {
-  Init()
-
+  const {data, loading} = useFetch()
+  if (loading) return 'loading...'
   return (
     <div id="home">
-      <Header />
-      <PopularMovies />
+      <Header data={data.header}/>
+      <PopularMovies data={data}/>
     </div>
   )
 }
+  
 
 export default Home

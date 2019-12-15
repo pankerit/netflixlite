@@ -19,6 +19,8 @@ nav
     margin-left: auto
     border: 2px solid var(--active)
     border-radius: 1000px
+    position: relative
+
     input
       width: 100%
       border: none
@@ -28,16 +30,43 @@ nav
       padding-top: 0.8rem
       padding-bottom: 0.8rem
       padding-left: 1rem
-    
       font-size: 1.6rem
       font-weight: 500
       color: var(--grey)
-      
+      &:focus + button svg 
+        color: var(--active)
+
     button
       background-color: transparent
       color: var(--grey)
       font-size: 3rem
       margin-bottom: -.5rem
       padding-right: .5rem
+
+  .drop-down 
+    position: absolute  
+    top: calc(100% + .7rem)
+    width: 100%
+    min-height: 15rem
+    background-color: var(--white)
+    border-radius: 5px;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.4);
+    padding: 1rem
+    & > svg 
+      @extend %position-center
+      width: 10rem
+      height: 10rem
+    .item
+      display: flex
+      padding: .5rem 0
+      img 
+        width: 3.7rem
+        height: 5.5rem
+      .info 
+        margin-left: 1rem 
+
+      &:not(:last-child) 
+        border-bottom: 1px solid var(--grey)
+
 
   

@@ -1,13 +1,31 @@
 import React from 'react'
-import {getImgUrl} from '@/module'
+import {Link} from '@reach/router'
+import {MdVisibility} from 'react-icons/md'
+import {GoPlay} from 'react-icons/go'
+import {getImg} from '~/module'
 
-const MovieCard = () => {
+const MovieCard = ({kinopoisk_id, title_ru, genre, year, rating}) => {
+  const num_vote = rating.kp_num_vote >= 1000 ? Math.round(rating.kp_num_vote/1000) + 'k' : rating.kp_num_vote
+  const link = `watch/${kinopoisk_id}`
   return (
     <div className="movieCard">
-      <img src={getImgUrl(361, 'small')} alt="Бойцовский клуб"/>
+      <div className="img">
+        <img src={getImg(kinopoisk_id, 'md')} alt={title_ru}/>
+        <div className="layer">
+          <Link to={link} className="play">
+            <GoPlay />
+          </Link>
+        </div>
+      </div>
       <div className="info">
-        <p className="text xs grey">фантастика, боевик, 1999</p>
-        <p className="text sm white">Начало</p>
+        <div className="d-flex align-center justify-between">
+          <p className="text xs grey">{genre[0]}, {year}</p>
+          <div className="view d-flex align-center">
+            <p>{num_vote}</p>
+            <MdVisibility />
+          </div>
+        </div>
+        <p className="text sm white">{title_ru}</p>
       </div>
     </div>
   )
